@@ -36,11 +36,29 @@ public class Hertz {
         }
         return automezz;
     }
-    public void effettuaPrestito(String targa){
-        for(Automezzo a:automezzi){
-            if(a.getTarga().equals(targa)){
-               a.Prestito();
+
+    public void effettuaPrestito(String targa) {
+        boolean found = false;
+        for (Automezzo a : automezzi) {
+            if (a.getTarga().equals(targa)) {
+                a.Prestito(a.getPrestito());
+                found = true;
+                break;
             }
         }
+        if (!found) {
+            throw new TargaException("Targa non trovata: " + targa);
+        }
+    }
+    public void effettuaReso(String targa){
+        boolean found=false;
+        for(Automezzo a:automezzi){
+            if(a.getTarga().equals(targa)){
+                a.Reso(a.getReso());
+                found=true;
+                break;
+            }
+        }
+        if(!found){}
     }
 }
